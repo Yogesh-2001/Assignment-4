@@ -58,33 +58,38 @@ const App = () => {
         if(tiktacArray[index] ==""){
             tiktacArray[index] = isCross ? "cross" : "circle"
             setIsCross(!isCross)
+        }else if(winMessage=='' && tiktacArray.length==9){
+             return toast('Game draw',{type:'info'})
         }
-       
         else{
             return toast("Open your eyes dude where are you tapping", {type: "error"})
         }
         findWinner()
     }
-
+   
     return(
          <Container className="p-5"> 
+         <button  onClick={()=>setIsCross(true)}>Cross First</button>
+         <button  onClick={()=>setIsCross(false)}>Circle First</button>
            <ToastContainer position="bottom-center" > </ToastContainer>
             <Row> 
-
+            
                <Col md={6} className="offset-md-3"> 
                   {
                     
                     winMessage? (
                         <div>
                         <h1 className="text-center" style={{color:'white'}}> 
-                        {winMessage}
+                       {winMessage}
                         </h1>
                         <Button onClick={playAgain} style={{margin:'1rem 12rem'}}> Play Again</Button>
                         
                        
                         </div>
                     ) : (
+                       
                         <div>
+                       
                         <h1 style={{color:'whitesmoke'}}>
                             {isCross? "Cross's Turn": "Circle's Turn"}
                         </h1>
